@@ -1,33 +1,15 @@
-import { getBooks } from "@/sanity/schemaTypes/sanity-utils";
-import Image from "next/image";
+import BooksCard from "@/components/BooksCard";
+import InfoCard from "@/components/InfoCard";
+import ProjectsCard from "@/components/ProjectsCard";
+import TechCard from "@/components/TechCard";
 
-export default async function Home() {
-  const books = await getBooks();
-
-  console.log(books, "books");
-
+export default function Home() {
   return (
-    <div>
-      <h1>My Books</h1>
-      <ul>
-        {books.map((book) => (
-          <li
-            className="flex w-96 flex-row items-center justify-center"
-            key={book?._id}
-          >
-            <Image
-              src={book?.image}
-              width={100}
-              height={100}
-              alt="Picture of the author"
-            />
-            <div>
-              <span className="text-xl font-bold">{book?.title}</span>
-              <p>{book?.description}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="flex flex-col gap-4 p-4">
+      <InfoCard />
+      <TechCard />
+      <BooksCard />
+      <ProjectsCard />
     </div>
   );
 }
