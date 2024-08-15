@@ -10,7 +10,7 @@ export default async function BooksCard() {
       <ul className="flex h-full w-full flex-row gap-4">
         <Image
           className="h-32 w-20 rounded-lg"
-          src={books?.at(0)?.image}
+          src={books[0]?.image}
           width={40}
           height={40}
           alt="Picture of the author"

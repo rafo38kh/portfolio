@@ -1,3 +1,4 @@
+import { Book, Project, Icons } from "@/types";
 import { createClient } from "next-sanity";
 
 const client = createClient({
@@ -7,7 +8,7 @@ const client = createClient({
   useCdn: true,
 });
 
-export async function getBooks() {
+export async function getBooks(): Promise<Book[]> {
   try {
     const query = `*[_type == "book"]{
       _id,
@@ -24,7 +25,7 @@ export async function getBooks() {
     return [];
   }
 }
-export async function getTechData() {
+export async function getTechData(): Promise<Icons[]> {
   try {
     const query = `*[_type == "icons"]{
       id,
@@ -40,7 +41,7 @@ export async function getTechData() {
   }
 }
 
-export async function getProjectData() {
+export async function getProjectData(): Promise<Project[]> {
   try {
     const query = `*[_type == "project"]{
       _id,
