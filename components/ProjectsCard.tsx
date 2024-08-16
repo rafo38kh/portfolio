@@ -2,13 +2,12 @@ import { getProjectData } from "@/sanity/schemaTypes/sanity-utils";
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export default async function ProjectsCard() {
   const projectData = await getProjectData();
 
   return (
-    <div className="w-full rounded-3xl bg-cardBackground p-4">
+    <div className="border-cardBorder w-full rounded-3xl border bg-cardBackground p-4">
       <ul className="flex flex-col gap-4">
         <span className="text-xl font-bold">Project</span>
         {projectData?.map((project, index) => (
@@ -30,7 +29,7 @@ export default async function ProjectsCard() {
                     <li key={index}>
                       <Image
                         className="h-10 w-10 rounded-lg"
-                        src={icon?.image}
+                        src={icon?.icon}
                         width={40}
                         height={40}
                         alt="Picture of the author"

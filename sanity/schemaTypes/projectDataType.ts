@@ -32,9 +32,9 @@ export const projectDataType = defineType({
           type: "object",
           fields: [
             defineField({
-              name: "icon",
+              name: "image",
               type: "image",
-              title: "Icon",
+              title: "Image",
               options: {
                 hotspot: true,
               },

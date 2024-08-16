@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         background: "#0E1827",
         cardBackground: "#1A263B",
+        cardBorder: "#2E3848",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -5,7 +5,7 @@ export default async function BooksCard() {
   const books = await getBooks();
 
   return (
-    <div className="flex w-full flex-col items-start justify-between gap-4 rounded-3xl bg-cardBackground p-4">
+    <div className="border-cardBorder flex w-full flex-col items-start justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
       <span className="text-xl font-bold">Books</span>
       <ul className="flex h-full w-full flex-row gap-4">
         <Image

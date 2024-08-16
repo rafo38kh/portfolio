@@ -12,8 +12,8 @@ export type Project = {
   description: string;
   picture: string;
   icons: {
+    icon: string;
     name: string;
-    image: string;
   }[];
   codeLink: string;
   liveSiteLink: string;
@@ -23,10 +23,22 @@ export type Icons = {
   _id: string;
   technologies: {
     name: string;
-    image: string;
+    icon: {
+      _type: "image";
+      asset: {
+        _ref: string;
+        _type: "reference";
+      };
+    };
   }[];
   tools: {
     name: string;
-    image: string;
+    icon: {
+      _type: "image";
+      asset: {
+        _ref: string;
+        _type: "reference";
+      };
+    };
   }[];
 };

@@ -28,7 +28,7 @@ export async function getBooks(): Promise<Book[]> {
 export async function getTechData(): Promise<Icons[]> {
   try {
     const query = `*[_type == "icons"]{
-      id,
+      _id,
       'technologies': technologies[]{name, 'image': icon.asset->url},
       'tools': tools[]{name, 'image': icon.asset->url}
     }`;

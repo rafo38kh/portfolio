@@ -5,7 +5,7 @@ import avatar from "../public/assets/photo_2023-02-27 19.38.53.jpeg";
 
 export default function InfoCard() {
   return (
-    <div className="flex w-full flex-row items-center justify-between gap-4 rounded-3xl bg-cardBackground p-4">
+    <div className="border-cardBorder flex w-full flex-row items-center justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
       <Image
         className="aspect-square rounded-full object-cover"
         src={avatar}
