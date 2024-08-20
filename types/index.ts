@@ -2,7 +2,8 @@ export type Book = {
   _id: string;
   title: string;
   image: string;
-  description: string;
+  isRead: string;
+  author: string;
 };
 
 export type Project = {

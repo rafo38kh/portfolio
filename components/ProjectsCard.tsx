@@ -13,11 +13,11 @@ export default async function ProjectsCard() {
         {projectData?.map((project, index) => (
           <li className="flex flex-col gap-4" key={index}>
             <Image
-              className="w-full rounded-xl"
-              src={project?.picture}
               height={300}
               width={300}
+              src={project?.picture}
               alt="the project picture"
+              className="w-full rounded-xl"
             />
             <div className="flex flex-col gap-4">
               <span className="text-xl font-bold">{project?.title}</span>
@@ -28,11 +28,11 @@ export default async function ProjectsCard() {
                   {project?.icons?.map((icon, index) => (
                     <li key={index}>
                       <Image
-                        className="h-10 w-10 rounded-lg"
-                        src={icon?.icon}
                         width={40}
                         height={40}
-                        alt="Picture of the author"
+                        src={icon?.icon}
+                        alt={icon?.name}
+                        className="h-10 w-10 rounded-lg"
                       />
                     </li>
                   ))}

@@ -12,10 +12,11 @@ export async function getBooks(): Promise<Book[]> {
   try {
     const query = `*[_type == "book"]{
       _id,
-      _title,
+      title,
+      isRead,
+      author,
       'slug': slug.current,
       'image': photo.asset->url,
-      _description,
     }`;
 
     const books = await client.fetch(query);

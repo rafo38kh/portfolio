@@ -11,8 +11,6 @@ export enum Tech {
 export default function TechCardWrapper() {
   const [cardType, setCardType] = useState<Tech>(Tech.Technologies);
 
-  console.log(cardType, "cardType");
-
   return (
     <div className="border-cardBorder flex w-full flex-row items-center justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
       <TechCard type={cardType} />

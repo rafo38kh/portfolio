@@ -8,22 +8,23 @@ export default function InfoCard() {
     <div className="border-cardBorder flex w-full flex-row items-center justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
       <Image
         className="aspect-square rounded-full object-cover"
-        src={avatar}
-        alt="picture"
-        width={100}
         height={80}
+        width={100}
+        src={avatar}
+        alt="profile picture"
       />
       <div className="flex w-full flex-col gap-4">
         <div className="flex flex-col">
           <span className="text-xl font-bold">Rafael Khachikyan</span>
-          <span className="text-xs font-bold">Front-end developer | LA</span>
+          <span className="text-xs font-bold text-white/60">
+            Front-end developer | LA
+          </span>
         </div>
         <div className="flex flex-row items-center justify-end gap-2">
           <Link href="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
-              // xmlnsSerif="http://www.serif.com/"
               viewBox="0 0 512 512"
               className="h-8 w-8 rounded-full"
             >
@@ -61,7 +62,6 @@ export default function InfoCard() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
-              // xmlnsSerif="http://www.serif.com/"
               viewBox="0 0 512 512"
               className="h-8 w-8 rounded-full"
             >

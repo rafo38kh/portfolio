@@ -11,9 +11,9 @@ export const bookType = defineType({
       title: "Title",
     }),
     defineField({
-      name: "description",
-      type: "text",
-      title: "Description",
+      name: "author",
+      type: "string",
+      title: "Author",
     }),
     defineField({
       name: "photo",
@@ -22,6 +22,11 @@ export const bookType = defineType({
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: "isRead",
+      type: "boolean",
+      title: "Is Read",
     }),
   ],
 });
