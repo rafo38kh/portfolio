@@ -49,7 +49,7 @@ export async function getProjectData(): Promise<Project[]> {
       title,
       'picture': picture.asset->url,
       description,
-      'icons': icons[]{name, 'image': icon.asset->url},
+      'icons': icons[]{name, 'image': image.asset->url},
       codeLink,
       liveSiteLink,
     }`;
