@@ -11,7 +11,7 @@ export default async function BooksCard() {
   const currentlyReading = books.find((book) => !book?.isRead) as Book;
 
   return (
-    <div className="border-cardBorder flex w-full flex-col items-start justify-between gap-2 rounded-3xl border bg-cardBackground p-4">
+    <div className="border-cardBorder flex flex-col justify-between gap-2 rounded-3xl border bg-cardBackground p-4">
       <span className="text-xl font-bold">Books</span>
 
       <span className="w-max text-xs font-bold text-white/80">

@@ -1,13 +1,55 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
 import avatar from "../public/assets/photo_2023-02-27 19.38.53.jpeg";
+import { useRef, useState } from "react";
 
 export default function InfoCard() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLImageElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (containerRef.current) {
+      const { left, top } = containerRef.current.getBoundingClientRect();
+      const cursorX = e.clientX - left;
+      const cursorY = e.clientY - top;
+
+      setPosition({ x: cursorX, y: cursorY });
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (containerRef.current) {
+      const touch = e.touches[0];
+      const { left, top } = containerRef.current.getBoundingClientRect();
+      const cursorX = touch.clientX - left;
+      const cursorY = touch.clientY - top;
+
+      setPosition({ x: cursorX, y: cursorY });
+      setIsHovered(true);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsHovered(false);
+  };
+
   return (
     <div className="border-cardBorder flex w-full flex-row items-center justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
       <Image
-        className="aspect-square rounded-full object-cover"
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="aspect-square rounded-full object-cover hover:cursor-none"
         height={80}
         width={100}
         src={avatar}
@@ -31,7 +73,7 @@ export default function InfoCard() {
               className="h-8 w-8 rounded-full"
             >
               <rect width="199" height="201" rx="25" fill="#1DA1F2" />
-              <g clip-path="url(#clip0_101_677)">
+              <g clipPath="url(#clip0_101_677)">
                 <path
                   d="M161.375 183H37.625C26.24 183 17 173.76 17 162.375V38.625C17 27.24 26.24 18 37.625 18H161.375C172.76 18 182 27.24 182 38.625V162.375C182 173.76 172.76 183 161.375 183Z"
                   fill="#1DA1F2"
@@ -64,8 +106,8 @@ export default function InfoCard() {
             >
               <rect width="199" height="201" rx="25" fill="#1DA1F2" />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M99.5 28.3125C59.6357 28.3125 27.3125 61.4414 27.3125 102.337C27.3125 135.047 48.002 162.762 76.6836 172.559C80.293 173.235 81.6143 170.947 81.6143 168.981C81.6143 167.209 81.5498 162.568 81.5176 156.381C61.4404 160.86 57.1865 146.455 57.1865 146.455C53.8994 137.915 49.1621 135.627 49.1621 135.627C42.6201 131.019 49.6455 131.115 49.6455 131.115C56.8965 131.631 60.6992 138.753 60.6992 138.753C67.1445 150.064 77.5859 146.81 81.7109 144.908C82.3555 140.139 84.2246 136.852 86.2871 135.015C70.2705 133.146 53.416 126.797 53.416 98.4375C53.416 90.3486 56.2197 83.7422 60.8281 78.5859C60.0869 76.7168 57.6055 69.1758 61.5371 58.9922C61.5371 58.9922 67.5957 56.9941 81.3887 66.5654C87.1572 64.9219 93.3125 64.1162 99.4678 64.084C105.591 64.1162 111.778 64.9219 117.547 66.5654C131.34 56.9941 137.366 58.9922 137.366 58.9922C141.298 69.1758 138.816 76.7168 138.075 78.5859C142.684 83.7744 145.487 90.3809 145.487 98.4375C145.487 126.861 128.601 133.113 112.52 134.95C115.098 137.238 117.418 141.75 117.418 148.646C117.418 158.54 117.321 166.532 117.321 168.949C117.321 170.915 118.61 173.235 122.284 172.494C151.03 162.729 171.688 135.015 171.688 102.337C171.688 61.4414 139.364 28.3125 99.5 28.3125Z"
                 fill="white"
               />
@@ -81,10 +123,10 @@ export default function InfoCard() {
               className="h-8 w-8 rounded-full"
             >
               <rect width="199" height="201" rx="25" fill="#1DA1F2" />
-              <g clip-path="url(#clip0_101_676)">
+              <g clipPath="url(#clip0_101_676)">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M182 38.625C182 27.2416 172.758 18 161.375 18H37.625C26.2416 18 17 27.2416 17 38.625V162.375C17 173.758 26.2416 183 37.625 183H161.375C172.758 183 182 173.758 182 162.375V38.625Z"
                   fill="#1DA1F2"
                 />
@@ -115,6 +157,24 @@ export default function InfoCard() {
           </Link>
         </div>
       </div>
+      {isHovered && (
+        <div
+          style={{
+            position: "absolute",
+            top: `${position.y + 50}px`,
+            left: `${position.x + 110}px`,
+            transform: "translate(-50%, 0)",
+          }}
+          className="absolute z-50 flex h-max w-max max-w-72 flex-col gap-1 rounded-md bg-black/80 p-4"
+        >
+          <span className="text-sm font-bold text-white/90">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </span>
+        </div>
+      )}
     </div>
   );
 }

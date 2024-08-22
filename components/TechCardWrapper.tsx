@@ -12,7 +12,7 @@ export default function TechCardWrapper() {
   const [cardType, setCardType] = useState<Tech>(Tech.Technologies);
 
   return (
-    <div className="border-cardBorder flex w-full flex-row items-center justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
+    <div className="border-cardBorder flex flex-grow-0 items-center justify-between gap-4 rounded-3xl border bg-cardBackground p-4">
       <TechCard type={cardType} />
 
       <div className="flex h-10 flex-col items-center justify-center gap-2 rounded-full bg-[#2E3848] p-[6px]">

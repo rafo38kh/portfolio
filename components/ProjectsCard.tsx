@@ -18,7 +18,7 @@ const Accordion = ({ i, title, expanded, setExpanded, children }) => {
         initial={false}
         animate={{ backgroundColor: isOpen ? "#c8d5e0" : "#4f5b66" }}
         onClick={() => setExpanded(isOpen ? null : i)}
-        className="mb-2 w-full rounded-full bg-[#4f5b66] p-2 text-center"
+        className="w-full rounded-full bg-[#4f5b66] p-2 text-center"
       >
         {title}
       </motion.header>
@@ -80,7 +80,8 @@ export default function ProjectsCard() {
   }
 
   return (
-    <ul className="border-cardBorder w-full rounded-3xl border bg-cardBackground p-4">
+    <ul className="border-cardBorder flex w-full flex-col gap-2 rounded-3xl border bg-cardBackground p-4">
+      <span className="text-xl font-bold">Projects</span>
       {projectData?.map((project) => (
         <Accordion
           i={project?._id}
@@ -89,20 +90,23 @@ export default function ProjectsCard() {
           title={project?.title}
           setExpanded={setExpanded}
         >
-          <li key={project._id} className="mb-2 flex flex-col gap-4">
+          <li
+            key={project._id}
+            className="mb-2 grid gap-4 md:grid-cols-2 md:gap-10"
+          >
             <Image
               height={300}
               width={300}
               src={project?.picture}
               alt="the project picture"
-              className="w-full rounded-xl"
+              className="h-full w-full rounded-xl"
             />
             <div className="flex flex-col gap-4">
               <span className="text-xl font-bold">{project?.title}</span>
               <p className="text-xs">{project?.description}</p>
               <div className="flex w-full flex-row items-center gap-2 overflow-hidden">
                 <span className="w-full min-w-24">Tech stack</span>
-                <ul className="no-scrollbar flex h-max w-max min-w-64 items-center gap-1 overflow-x-scroll">
+                <ul className="no-scrollbar flex h-max items-center gap-1 overflow-x-scroll">
                   {/* @ts-ignore */}
                   {project?.icons?.map((icon: any, index: string) => (
                     <li key={index}>
@@ -141,7 +145,7 @@ export default function ProjectsCard() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/rafo38kh"
-        className="w-full rounded-full bg-[#4f5b66] p-2 text-center"
+        className="inline-block w-full rounded-full bg-[#4f5b66] p-2 text-center"
       >
         see more projects
       </Link>

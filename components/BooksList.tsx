@@ -18,8 +18,6 @@ export default function BooksList({ books }: BooksListProps) {
 
   const [scrollWidth, setScrollWidth] = useState<number>(0);
 
-  console.log(scrollWidth, "scrollWidth");
-
   useEffect(() => {
     if (listRef.current) {
       const listWidth = listRef.current.scrollWidth;
@@ -42,7 +40,7 @@ export default function BooksList({ books }: BooksListProps) {
   return (
     <motion.ul
       ref={listRef}
-      className="no-scrollbar flex h-max w-max content-start gap-2 overflow-x-scroll"
+      className="no-scrollbar flex h-max w-60 content-start gap-2 overflow-x-scroll"
     >
       {doubledBooks?.map(
         (book) =>
