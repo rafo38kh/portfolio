@@ -16,14 +16,12 @@ export default function TechCardWrapper() {
       <TechCard type={cardType} />
 
       <div className="flex h-10 flex-col items-center justify-center gap-2 rounded-full bg-[#2E3848] p-[6px]">
-        <button
-          onClick={() => setCardType(Tech?.Technologies)}
-          className="h-2 w-2 rounded-full bg-slate-600"
-        />
-        <button
-          onClick={() => setCardType(Tech?.Tool)}
-          className="h-2 w-2 rounded-full bg-slate-600"
-        />
+        {Object.values(Tech).map((dot) => (
+          <button
+            onClick={() => setCardType(dot)}
+            className={`h-2 w-2 rounded-full transition-all duration-300 hover:bg-white/50 ${cardType === dot ? "bg-white" : "bg-slate-600"}`}
+          />
+        ))}
       </div>
     </div>
   );

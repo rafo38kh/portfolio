@@ -40,7 +40,7 @@ export default function BooksList({ books }: BooksListProps) {
   return (
     <motion.ul
       ref={listRef}
-      className="no-scrollbar flex h-max w-60 content-start gap-2 overflow-x-scroll"
+      className="no-scrollbar flex h-max w-60 content-start gap-2 overflow-x-scroll md:w-full"
     >
       {doubledBooks?.map(
         (book) =>

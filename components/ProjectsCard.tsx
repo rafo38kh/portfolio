@@ -16,9 +16,9 @@ const Accordion = ({ i, title, expanded, setExpanded, children }) => {
     <>
       <motion.header
         initial={false}
-        animate={{ backgroundColor: isOpen ? "#c8d5e0" : "#4f5b66" }}
+        animate={{ backgroundColor: isOpen ? "#334462" : "#334462" }}
         onClick={() => setExpanded(isOpen ? null : i)}
-        className="w-full rounded-full bg-[#4f5b66] p-2 text-center"
+        className="w-full rounded-full bg-white/10 p-2 text-center"
       >
         {title}
       </motion.header>
@@ -80,8 +80,8 @@ export default function ProjectsCard() {
   }
 
   return (
-    <ul className="border-cardBorder flex w-full flex-col gap-2 rounded-3xl border bg-cardBackground p-4">
-      <span className="text-xl font-bold">Projects</span>
+    <ul className="border-cardBorder row-start-1 flex w-full flex-col gap-2 rounded-3xl border bg-cardBackground p-4 md:col-span-2 md:row-start-2 md:row-end-2">
+      <span className="text-xl font-bold md:text-2xl">Projects</span>
       {projectData?.map((project) => (
         <Accordion
           i={project?._id}
@@ -101,41 +101,45 @@ export default function ProjectsCard() {
               alt="the project picture"
               className="h-full w-full rounded-xl"
             />
-            <div className="flex flex-col gap-4">
-              <span className="text-xl font-bold">{project?.title}</span>
-              <p className="text-xs">{project?.description}</p>
-              <div className="flex w-full flex-row items-center gap-2 overflow-hidden">
-                <span className="w-full min-w-24">Tech stack</span>
-                <ul className="no-scrollbar flex h-max items-center gap-1 overflow-x-scroll">
-                  {/* @ts-ignore */}
-                  {project?.icons?.map((icon: any, index: string) => (
-                    <li key={index}>
-                      <img
-                        src={icon?.image}
-                        alt={icon.name}
-                        className="h-10 w-10 rounded-lg"
-                      />
-                    </li>
-                  ))}
-                </ul>
+            <div className="flex flex-col justify-between gap-4">
+              <div>
+                <span className="text-xl font-bold">{project?.title}</span>
+                <p className="text-xs">{project?.description}</p>
               </div>
-              <div className="flex flex-row items-center justify-between gap-4">
-                <Link
-                  className="w-full rounded-full bg-[#4f5b66] p-2 text-center"
-                  href={project?.codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Code
-                </Link>
-                <Link
-                  className="w-full rounded-full bg-[#4f5b66] p-2 text-center"
-                  href={project?.liveSiteLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Live Site
-                </Link>
+              <div>
+                <div className="flex w-full flex-row items-center gap-2 overflow-hidden">
+                  <span className="w-full min-w-24 md:min-w-0">Tech stack</span>
+                  <ul className="no-scrollbar flex h-max items-center gap-1 overflow-x-scroll">
+                    {/* @ts-ignore */}
+                    {project?.icons?.map((icon: any, index: string) => (
+                      <li key={index}>
+                        <img
+                          src={icon?.image}
+                          alt={icon.name}
+                          className="h-10 w-10 rounded-lg md:h-14 md:w-14"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex flex-row items-center justify-between gap-4">
+                  <Link
+                    className="border-linkColor w-full rounded-full border bg-transparent p-2 text-center"
+                    href={project?.codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Code
+                  </Link>
+                  <Link
+                    className="bg-linkColor w-full rounded-full p-2 text-center"
+                    href={project?.liveSiteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live Site
+                  </Link>
+                </div>
               </div>
             </div>
           </li>
@@ -145,7 +149,7 @@ export default function ProjectsCard() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/rafo38kh"
-        className="inline-block w-full rounded-full bg-[#4f5b66] p-2 text-center"
+        className="border-linkColor inline-block w-full rounded-full border bg-transparent p-2 text-center"
       >
         see more projects
       </Link>
