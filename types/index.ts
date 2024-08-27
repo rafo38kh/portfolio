@@ -12,10 +12,7 @@ export type Project = {
   title: string;
   description: string;
   picture: string;
-  icons: {
-    icon: string;
-    name: string;
-  }[];
+  icons: Icon[];
   codeLink: string;
   liveSiteLink: string;
 };

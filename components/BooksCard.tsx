@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getBooks } from "@/sanity/schemaTypes/sanity-utils";
 import BooksList from "./BooksList";
 import ImageContainer from "./ImageContainer";
@@ -11,7 +10,7 @@ export default async function BooksCard() {
   const currentlyReading = books.find((book) => !book?.isRead) as Book;
 
   return (
-    <div className="flex h-max flex-col gap-2 rounded-3xl border border-cardBorder bg-cardBackground p-4 md:min-h-[382px]">
+    <div className="flex h-full flex-col gap-2 rounded-3xl border border-cardBorder bg-cardBackground p-4">
       <span className="text-xl font-bold md:text-2xl">Books</span>
 
       <span className="w-max text-xs font-bold text-white/80 md:text-sm">

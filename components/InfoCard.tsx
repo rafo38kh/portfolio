@@ -42,6 +42,17 @@ export default function InfoCard() {
     setIsHovered(false);
   };
 
+  const about = `As a dedicated front-end developer, I craft user-friendly and visually
+engaging interfaces with a focus on performance and scalability. My
+expertise in UI design, testing, and debugging allows me to deliver
+high-quality, tailored solutions that meet client and user needs. With
+proficiency in mobile and desktop-first development, I ensure
+consistent, responsive designs across all devices. In addition to my
+technical skills, I excel in team collaboration and thrive in
+self-managed projects. Always eager to learn and improve, I am
+confident in my ability to contribute meaningfully to any team or
+project.`;
+
   return (
     <div className="flex h-full w-full gap-8 rounded-3xl border border-cardBorder bg-cardBackground p-4">
       <div className="flex w-full gap-4">
@@ -170,18 +181,7 @@ export default function InfoCard() {
           About
         </span>
 
-        <p className="text-xs font-bold text-white/60">
-          As a dedicated front-end developer, I craft user-friendly and visually
-          engaging interfaces with a focus on performance and scalability. My
-          expertise in UI design, testing, and debugging allows me to deliver
-          high-quality, tailored solutions that meet client and user needs. With
-          proficiency in mobile and desktop-first development, I ensure
-          consistent, responsive designs across all devices. In addition to my
-          technical skills, I excel in team collaboration and thrive in
-          self-managed projects. Always eager to learn and improve, I am
-          confident in my ability to contribute meaningfully to any team or
-          project.
-        </p>
+        <p className="text-xs font-bold text-white/60">{about}</p>
       </div>
       {isHovered && (
         <div
@@ -193,18 +193,7 @@ export default function InfoCard() {
           }}
           className="absolute z-50 flex h-max w-max max-w-72 flex-col gap-1 rounded-md bg-black/80 p-4 md:hidden"
         >
-          <p className="text-sm font-bold text-white/90">
-            As a dedicated front-end developer, I craft user-friendly and
-            visually engaging interfaces with a focus on performance and
-            scalability. My expertise in UI design, testing, and debugging
-            allows me to deliver high-quality, tailored solutions that meet
-            client and user needs. With proficiency in mobile and desktop-first
-            development, I ensure consistent, responsive designs across all
-            devices. In addition to my technical skills, I excel in team
-            collaboration and thrive in self-managed projects. Always eager to
-            learn and improve, I am confident in my ability to contribute
-            meaningfully to any team or project.
-          </p>
+          <p className="text-sm font-bold text-white/90">{about}</p>
         </div>
       )}
     </div>

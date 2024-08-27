@@ -1,4 +1,4 @@
-import { Book, Project, Icons } from "@/types";
+import { Book, Project, Icons, IconsResponse } from "@/types";
 import { createClient } from "next-sanity";
 
 const client = createClient({
@@ -25,7 +25,7 @@ export async function getBooks(): Promise<Book[]> {
     return [];
   }
 }
-export async function getTechData(): Promise<Icons[]> {
+export async function getTechData(): Promise<IconsResponse[]> {
   try {
     const query = `*[_type == "icons"]{
       _id,

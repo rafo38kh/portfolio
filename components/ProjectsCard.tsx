@@ -1,15 +1,33 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { getProjectData } from "@/sanity/schemaTypes/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Project } from "@/types";
 
-// NOTE: remove later
-// @ts-ignore
-const Accordion = ({ i, title, expanded, setExpanded, children }) => {
+type AccordionProps = {
+  i: string;
+  title: string;
+  expanded: string | null;
+  setExpanded: Dispatch<SetStateAction<string | null>>;
+  children: ReactNode;
+};
+
+const Accordion = ({
+  i,
+  title,
+  expanded,
+  setExpanded,
+  children,
+}: AccordionProps) => {
   const isOpen = i === expanded;
 
   return (
@@ -53,7 +71,7 @@ export default function ProjectsCard() {
   const [projectData, setProjectData] = useState<Project[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [expanded, setExpanded] = useState<null | number>(null);
+  const [expanded, setExpanded] = useState<null | string>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,12 +137,11 @@ export default function ProjectsCard() {
                       Tech stack
                     </span>
                     <ul className="no-scrollbar flex h-max w-full items-center gap-1 overflow-x-scroll">
-                      {/* @ts-ignore */}
-                      {project?.icons?.map((icon: any, index: string) => (
-                        <li key={index}>
+                      {project?.icons?.map((icon, index) => (
+                        <li key={icon?.name}>
                           <img
+                            alt={icon?.name}
                             src={icon?.image}
-                            alt={icon.name}
                             className="h-8 w-8 rounded-lg md:h-10 md:w-10"
                           />
                         </li>
@@ -164,7 +181,6 @@ export default function ProjectsCard() {
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/rafo38kh"
-            // className="inline-block w-full rounded-full border border-linkColor bg-transparent p-2 text-center"
           >
             see more projects
           </Link>
