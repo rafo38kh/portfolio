@@ -14,8 +14,8 @@ export default function ImageContainer({ book }: ImageContainerProps) {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (containerRef.current) {
       const { left, top } = containerRef.current.getBoundingClientRect();
-      const cursorX = e.clientX - left; // X position relative to the container
-      const cursorY = e.clientY - top; // Y position relative to the container
+      const cursorX = e.clientX - left;
+      const cursorY = e.clientY - top;
 
       setPosition({ x: cursorX, y: cursorY });
       setIsHovered(true);

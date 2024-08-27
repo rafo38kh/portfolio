@@ -43,3 +43,14 @@ export type Icons = {
     };
   }[];
 };
+
+type Icon = {
+  name: string;
+  image: string;
+};
+
+export type IconsResponse = {
+  _id: string;
+  technologies: Icon[];
+  tools: Icon[];
+};

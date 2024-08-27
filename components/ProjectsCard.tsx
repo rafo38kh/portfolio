@@ -16,9 +16,9 @@ const Accordion = ({ i, title, expanded, setExpanded, children }) => {
     <>
       <motion.header
         initial={false}
-        animate={{ backgroundColor: isOpen ? "#334462" : "#334462" }}
+        animate={{ backgroundColor: isOpen ? "#007ACC" : "#334462" }}
         onClick={() => setExpanded(isOpen ? null : i)}
-        className="w-full rounded-full bg-white/10 p-2 text-center"
+        className="w-full rounded-full bg-white/10 p-2 text-center transition-all duration-300 hover:cursor-pointer hover:opacity-40"
       >
         {title}
       </motion.header>
@@ -60,6 +60,9 @@ export default function ProjectsCard() {
       try {
         const data = await getProjectData();
         setProjectData(data);
+        if (data.length > 0) {
+          setExpanded(data[0]._id);
+        }
         setLoading(false);
       } catch (err) {
         console.error("Failed to fetch project data:", err);
@@ -80,79 +83,93 @@ export default function ProjectsCard() {
   }
 
   return (
-    <ul className="border-cardBorder row-start-1 flex w-full flex-col gap-2 rounded-3xl border bg-cardBackground p-4 md:col-span-2 md:row-start-2 md:row-end-2">
+    <div className="row-start-1 flex w-full flex-col gap-4 rounded-3xl border border-cardBorder bg-cardBackground p-4 md:col-span-2 md:row-start-2 md:row-end-2">
       <span className="text-xl font-bold md:text-2xl">Projects</span>
-      {projectData?.map((project) => (
-        <Accordion
-          i={project?._id}
-          key={project?._id}
-          expanded={expanded}
-          title={project?.title}
-          setExpanded={setExpanded}
-        >
-          <li
-            key={project._id}
-            className="mb-2 grid gap-4 md:grid-cols-2 md:gap-10"
+
+      <ul className="flex w-full flex-col gap-2">
+        {projectData?.map((project) => (
+          <Accordion
+            i={project?._id}
+            key={project?._id}
+            expanded={expanded}
+            title={project?.title}
+            setExpanded={setExpanded}
           >
-            <Image
-              height={300}
-              width={300}
-              src={project?.picture}
-              alt="the project picture"
-              className="h-full w-full rounded-xl"
-            />
-            <div className="flex flex-col justify-between gap-4">
-              <div>
-                <span className="text-xl font-bold">{project?.title}</span>
-                <p className="text-xs">{project?.description}</p>
-              </div>
-              <div>
-                <div className="flex w-full flex-row items-center gap-2 overflow-hidden">
-                  <span className="w-full min-w-24 md:min-w-0">Tech stack</span>
-                  <ul className="no-scrollbar flex h-max items-center gap-1 overflow-x-scroll">
-                    {/* @ts-ignore */}
-                    {project?.icons?.map((icon: any, index: string) => (
-                      <li key={index}>
-                        <img
-                          src={icon?.image}
-                          alt={icon.name}
-                          className="h-10 w-10 rounded-lg md:h-14 md:w-14"
-                        />
-                      </li>
-                    ))}
-                  </ul>
+            <li
+              key={project._id}
+              className="mb-2 grid gap-4 md:grid-cols-2 md:gap-10"
+            >
+              <Image
+                height={300}
+                width={300}
+                src={project?.picture}
+                alt="the project picture"
+                className="h-full w-full rounded-xl"
+              />
+              <div className="flex flex-col justify-between gap-4">
+                <div className="grid gap-3">
+                  <span className="text-xl font-bold">{project?.title}</span>
+                  <p className="text-sm text-slate-200">
+                    {project?.description}
+                  </p>
                 </div>
-                <div className="flex flex-row items-center justify-between gap-4">
-                  <Link
-                    className="border-linkColor w-full rounded-full border bg-transparent p-2 text-center"
-                    href={project?.codeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Code
-                  </Link>
-                  <Link
-                    className="bg-linkColor w-full rounded-full p-2 text-center"
-                    href={project?.liveSiteLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Site
-                  </Link>
+                <div className="flex flex-col gap-4">
+                  <div className="flex w-full flex-col justify-start gap-2 overflow-hidden">
+                    <span className="inline-block w-max text-xs">
+                      Tech stack
+                    </span>
+                    <ul className="no-scrollbar flex h-max w-full items-center gap-1 overflow-x-scroll">
+                      {/* @ts-ignore */}
+                      {project?.icons?.map((icon: any, index: string) => (
+                        <li key={index}>
+                          <img
+                            src={icon?.image}
+                            alt={icon.name}
+                            className="h-8 w-8 rounded-lg md:h-10 md:w-10"
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex flex-row items-center justify-between gap-4">
+                    <Link
+                      className="w-full rounded-full border border-linkColor bg-transparent p-2 text-center transition-all duration-300 hover:cursor-pointer hover:bg-linkColor"
+                      href={project?.codeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Code
+                    </Link>
+                    <Link
+                      className="w-full rounded-full bg-linkColor p-2 text-center transition-all duration-300 hover:scale-105"
+                      href={project?.liveSiteLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Site
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </Accordion>
-      ))}
-      <Link
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/rafo38kh"
-        className="border-linkColor inline-block w-full rounded-full border bg-transparent p-2 text-center"
-      >
-        see more projects
-      </Link>
-    </ul>
+            </li>
+          </Accordion>
+        ))}
+        <motion.div
+          className="inline-block w-full rounded-full border border-linkColor bg-transparent p-2 text-center hover:bg-linkColor"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/rafo38kh"
+            // className="inline-block w-full rounded-full border border-linkColor bg-transparent p-2 text-center"
+          >
+            see more projects
+          </Link>
+        </motion.div>
+      </ul>
+    </div>
   );
 }

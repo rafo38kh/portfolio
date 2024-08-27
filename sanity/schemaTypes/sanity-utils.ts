@@ -11,11 +11,10 @@ const client = createClient({
 export async function getBooks(): Promise<Book[]> {
   try {
     const query = `*[_type == "book"]{
-      _id,
+      id,
       title,
       isRead,
       author,
-      'slug': slug.current,
       'image': photo.asset->url,
     }`;
 

@@ -27,9 +27,9 @@ export default function BooksList({ books }: BooksListProps) {
 
   const scrolGridListVarints: Variants = {
     animate: {
-      x: -scrollWidth,
+      x: -scrollWidth + 240,
       transition: {
-        duration: scrollWidth / 20,
+        duration: scrollWidth / 40,
         ease: "linear",
         repeat: Infinity,
         repeatType: "mirror",
@@ -43,20 +43,20 @@ export default function BooksList({ books }: BooksListProps) {
       className="no-scrollbar flex h-max w-60 content-start gap-2 overflow-x-scroll md:w-full"
     >
       {doubledBooks?.map(
-        (book) =>
+        (book, idx) =>
           book?.isRead && (
             <motion.li
-              key={book?._id}
+              key={idx}
               animate="animate"
               variants={scrolGridListVarints}
-              className="h-40 w-24 flex-shrink-0 rounded-lg"
+              className="h-full w-max flex-shrink-0 rounded-lg"
             >
               <Image
-                className="h-full w-full rounded-lg"
-                src={book?.image}
                 width={100}
                 height={100}
                 alt={book?.title}
+                src={book?.image}
+                className="w-max rounded-lg"
               />
             </motion.li>
           ),
